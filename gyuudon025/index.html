@@ -23,24 +23,24 @@ function $(id){
   return document.getElementById(id);
 }
 
-function change(type){
+function change(type,value){
   var gd = 0, kg = 0
   switch(type){
   case 0: //gyuudon025->kg
-    gd = $('gyuudon025value').value
+    gd = value
     kg = parseFloat(gd) * 100
     break
   case 1: //kg->gyuudon025
-    kg = $('kgvalue').value
+    kg = value
     gd = parseFloat(kg) / 100
     break
   }
   React.render(
-    <input id='gyuudon025value' onChange={function(){change(0)}} value={gd}></input>,
+    <input id='gyuudon025value' onChange={function(event){change(0,event.target.value)}} value={gd}></input>,
     $('gyuudon025')
   )
   React.render(
-    <input id='kgvalue' onChange={function(){change(1)}} value={kg}></input>,
+    <input id='kgvalue' onChange={function(event){change(1,event.target.value)}} value={kg}></input>,
     $('kg')
   )
 }
