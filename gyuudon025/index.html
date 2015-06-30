@@ -1,0 +1,50 @@
+<html>
+<head>
+  <script src=./react.js></script>
+  <script src=./JSXTransformer.js></script>
+</head>
+<body>
+<h1>ぎゅうどん式健康計算機</h1>
+<table>
+  <tr>
+    <td>
+      ぎゅうどん</br><span id=gyuudon025></span>
+    </td>
+    <td>
+      &lt;-&gt;
+    </td>
+    <td>
+      kg</br><span id=kg></span>
+    </td>
+  </tr>
+</table>
+<script type='text/jsx'>
+function $(id){
+  return document.getElementById(id);
+}
+
+function change(type){
+  var gd = 0, kg = 0
+  switch(type){
+  case 0: //gyuudon025->kg
+    gd = $('gyuudon025value').value
+    kg = parseFloat(gd) * 100
+    break
+  case 1: //kg->gyuudon025
+    kg = $('kgvalue').value
+    gd = parseFloat(kg) / 100
+    break
+  }
+  React.render(
+    <input id='gyuudon025value' onChange={function(){change(0)}} value={gd}></input>,
+    $('gyuudon025')
+  )
+  React.render(
+    <input id='kgvalue' onChange={function(){change(1)}} value={kg}></input>,
+    $('kg')
+  )
+}
+change()
+</script>
+</body>
+</html>
